@@ -58,7 +58,7 @@ class PostController extends Controller
         [
             'title' => 'judul',
             'category_id' => 'kategori',
-            'body' => 'tulisan'
+            'body' => 'Tulisan'
         ])->validate();
 
         Post::create([
