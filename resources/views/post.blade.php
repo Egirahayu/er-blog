@@ -13,9 +13,9 @@
                                 src="{{ $post->author->avatar ? asset('storage/' . $post->author->avatar) : asset('img/nophoto.jpg') }}"
                                 alt="{{ $post->author->name }}">
                             <div>
-                                <a href="/authors/{{ $post->author->username }}" rel="author"
+                                <a href="/posts?author={{ $post->author->username }}" rel="author"
                                     class="text-xl font-bold text-gray-900 dark:text-white">{{ $post->author->name }}</a>
-                                <a href="/categories/{{ $post->category->slug }}" class="block" <span
+                                <a href="/posts?category={{ $post->category->slug }}" class="block" <span
                                     class="{{ $post->category->color }} text-gray-600 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
                                     {{ $post->category->name }}
                                     </span>
@@ -29,9 +29,9 @@
                         class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
                         {{ $post['title'] }}</h1>
                 </header>
-                <p>
-                    {{ $post['title'] }}
-                </p>
+                <div>
+                    {!! $post['body'] !!}
+                </div>
             </article>
         </div>
     </main>
