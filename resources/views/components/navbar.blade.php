@@ -25,15 +25,19 @@
                                 class="relative flex max-w-xs items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">Open user menu</span>
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="" class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
+                                <img src="{{ Auth::user()->avatar ? asset('storage/' . Auth::user()->avatar) : asset('img/nophoto.jpg') }}"
+                                    alt="{{ Auth::user()->name }}"
+                                    class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
                                 <div class="text-gray-300 text-sm font-medium ml-3">{{ Auth::user()->name }}</div>
 
                                 <div class="ms-1 text-gray-300">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
                             </button>
                         @else
                             <a href="/login" class="text-white text-sm font-medium">Login</a>
@@ -50,7 +54,8 @@
                                 class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Settings</a>
                             <form action="/logout" method="POST">
                                 @csrf
-                                <button type="submit" href="#" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">
+                                <button type="submit" href="#"
+                                    class="cursor-pointer block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">
                                     Sign out
                                 </button>
                             </form>
@@ -91,23 +96,27 @@
             @if (Auth::check())
                 <div class="flex items-center px-5">
                     <div class="shrink-0">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt="{{ Auth::user()->name }}" class="size-10 rounded-full outline -outline-offset-1 outline-white/10" />
+                        <img src="{{ Auth::user()->avatar ? asset('storage/' . Auth::user()->avatar) : asset('img/nophoto.jpg') }}"
+                            alt="{{ Auth::user()->name }}"
+                            class="size-10 rounded-full outline -outline-offset-1 outline-white/10" />
                     </div>
                     <div class="ml-3">
                         <div class="text-base/5 font-medium text-white">{{ Auth::user()->name }}</div>
                     </div>
                 </div>
                 <div x-show="isOpen" class="mt-3 space-y-1 px-2">
-                    <a href="/profile" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">
+                    <a href="/profile"
+                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">
                         Your profile
                     </a>
-                    <a href="/dashboard" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">
+                    <a href="/dashboard"
+                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">
                         Settings
                     </a>
                     <form action="/logout" method="POST">
                         @csrf
-                        <button type="submit" href="#" class="block w-full text-start rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white cursor-pointer">
+                        <button type="submit" href="#"
+                            class="block w-full text-start rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white cursor-pointer">
                             Sign out
                         </button>
                     </form>
@@ -118,7 +127,7 @@
                     <a href="/register" class="block text-white text-sm px-3 font-medium py-2">Register</a>
                 </div>
             @endif
-            
+
         </div>
     </el-disclosure>
 </nav>
